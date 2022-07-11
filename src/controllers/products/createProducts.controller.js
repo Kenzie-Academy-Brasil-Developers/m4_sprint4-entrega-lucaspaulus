@@ -4,7 +4,7 @@ export default async function  createProductsController(req, res){
     const body = req.body
 
     try{
-        const createProduct = await createProductsService(body.name, body.price, body.category_id)
+        const createProduct = await createProductsService(body)
         return res.status(201).json(createProduct)
         
     }catch(err){

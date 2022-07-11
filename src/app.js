@@ -12,7 +12,8 @@ app.use(express.json());
 app.use("/products", productsRoutes)
 app.use("/categories", categoriesRoutes)
 
-export default app.listen(8080, () => {
+const port = process.env.NODE_ENV === "test" ? 8181 : 8080
+export default app.listen(port, () => {
     startDatabase()
-    console.log("Server running on 8080");
+    console.log(`Server running on ${port}`);
 });

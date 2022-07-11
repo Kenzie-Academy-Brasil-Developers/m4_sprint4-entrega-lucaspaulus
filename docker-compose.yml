@@ -12,7 +12,7 @@ services:
     environment:
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=${DB_HOST}
+      - DB_HOST=db
       - DB=${DB}
       - DB_PORT=${DB_PORT}
 
@@ -20,7 +20,7 @@ services:
     container_name: db
     image: postgres:12-alpine
     ports:
-      - 5432:5432
+      - 5433:5432
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
@@ -29,4 +29,15 @@ services:
     volumes:
       - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
 
-    
+  db_tests:
+    container_name: db_tests
+    image: postgres:12-alpine
+    ports:
+      - 5434:5432
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_TEST}
+
+    volumes:
+      - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql

@@ -1,17 +1,19 @@
 import database from "../../database"
 
-export default async function  listAllProductsService(){
+
+export default async function  listAllCategoriesService(){
+    
     try{
         const res = await database.query(
-            "SELECT * FROM products"
+            "SELECT * FROM categories"
+             
         )
-        return res.rows   
-      
-        
+ 
+        return res.rows
+
     }catch(err){
         throw new Error(err)
     }
 
 
 }
- 

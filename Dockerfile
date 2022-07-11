@@ -6,11 +6,10 @@ EXPOSE 8080
 
 WORKDIR /app
 
-COPY package.json*.json .
+COPY package*.json ./
 
-RUN yarn
+RUN yarn install
 
 COPY . . 
 
 CMD ["yarn", "dev"]
-
